@@ -4,9 +4,24 @@ from streamlit_option_menu import option_menu
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import jinja2
 import pdfkit
 import base64
 import os 
+
+my_name="Jorge O."
+item1="Cosa 1"
+
+
+context = {'my_name': my_name, 'item1': item1}
+
+template_loader = jinja2.FileSystemLoader('./')
+template_env = jinja2.Environment(loader=template_loader)
+
+html_template = 'template.html'
+template = template_env.get_template(html_template)
+output_text = template.render(context)
+
 
 
 st.set_page_config(
@@ -70,17 +85,10 @@ if selected == "Home":
 if selected == "Texto":
 		st.title(f"Herramientas IA para el procesamiento de texto")
 		st.write("Algunas herramientas:")
-		"""
-		* Herramientas para el procesamiento y generación de textos (Grandes modelos de lenguaje o LLM):
-			* https://chat.openai.com/chat
-			* https://bing.com/chat
-			* https://www.notion.so/
-		* Herramientas para parafrasear un texto manteniendo su significado:
-			* https://www.paraphraser.io/
-		* Herramienta para crear un chat de preguntas y respuestas con documentos en PDF: 
-			* https://www.chatpdf.com/
-
-		"""
+		
+		config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')
+		output_pdf = 'pdf_generado.pdf'
+		pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
 
 
 
