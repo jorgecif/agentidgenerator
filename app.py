@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 import jinja2
 import pdfkit
 import base64
-import os 
+import os
+import subprocess, platform
 
 my_name="Jorge O."
 item1="Cosa 1"
@@ -85,8 +86,9 @@ if selected == "Home":
 if selected == "Texto":
 		st.title(f"Herramientas IA para el procesamiento de texto")
 		st.write("Algunas herramientas:")
-		
-		config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')
+		WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_PATH', '/app/bin/wkhtmltopdf')],
+		stdout=subprocess.PIPE).communicate()[0].strip()
+		config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
 		output_pdf = 'pdf_generado.pdf'
 		pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
 
