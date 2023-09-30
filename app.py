@@ -86,11 +86,20 @@ if selected == "Home":
 if selected == "Texto":
 		st.title(f"Herramientas IA para el procesamiento de texto")
 		st.write("Algunas herramientas:")
-		WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_PATH', '/app/bin/wkhtmltopdf')],
-		stdout=subprocess.PIPE).communicate()[0].strip()
-		config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
-		output_pdf = 'pdf_generado.pdf'
-		pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
+
+		st.button("Reset", type="primary")
+		if st.button('Say hello'):
+			st.write('Why hello there')
+			
+			WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_PATH', '/app/bin/wkhtmltopdf')],
+			stdout=subprocess.PIPE).communicate()[0].strip()
+			config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+			output_pdf = 'pdf_generado.pdf'
+			pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
+		else:
+			st.write('Goodbye')
+
+
 
 
 
