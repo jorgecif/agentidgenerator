@@ -107,9 +107,9 @@ if selected == "Texto":
 			pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
 			# download the PDF file
 			
-			if output_pdf is not None:
+			if output_text is not None:
 				st.success("PDF file Generated. Click on 'Download PDF' to save.")
-				b64 = base64.b64encode(output_pdf).decode()
+				b64 = base64.b64encode(output_text).decode()
 				href = f'<a href="data:application/pdf;base64,{b64}" download="{"archivo.pdf"}">Download PDF file</a>'
 				st.markdown(href, unsafe_allow_html=True)
 				# remove the success message and download link
