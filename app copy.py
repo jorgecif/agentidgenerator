@@ -45,10 +45,6 @@ st.set_page_config(
 # Funciones
 
 
-def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
-
 
 
 # Logo sidebar
@@ -101,12 +97,7 @@ if selected == "Texto":
 			output_pdf = 'pdf_generado.pdf'
 			pdfoutput=pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
 			st.success("Generación completada")
-			#st.download_button('Descargar archivo pdf .pdf con tu ID', pdfoutput, file_name='pdfoutput.pdf')
-
-			html = create_download_link(pdfoutput, "test")
-
-			st.markdown(html, unsafe_allow_html=True)
-
+			st.download_button('Descargar archivo pdf .pdf con tu ID', pdfoutput, file_name='pdfoutput.pdf')
 			#st.write(result["text"])
 		else:
 			st.write('Goodbye')
