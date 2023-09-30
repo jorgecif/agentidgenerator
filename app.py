@@ -95,9 +95,9 @@ if selected == "Texto":
 			stdout=subprocess.PIPE).communicate()[0].strip()
 			config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
 			output_pdf = 'pdf_generado.pdf'
-			pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
+			pdfoutput=pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
 			st.success("Generación completada")
-			st.download_button('Descargar archivo pdf .pdf con tu ID', output_pdf, file_name='transcripcion.txt')
+			st.download_button('Descargar archivo pdf .pdf con tu ID', pdfoutput, file_name='pdfoutput.pdf')
 			#st.write(result["text"])
 		else:
 			st.write('Goodbye')
