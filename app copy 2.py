@@ -9,6 +9,7 @@ import pdfkit
 import base64
 import os
 import subprocess, platform
+from fpdf import FPDF
 import base64
 
 my_name="Jorge O."
@@ -92,35 +93,23 @@ if selected == "Texto":
 		st.title(f"Herramientas IA para el procesamiento de texto")
 		st.write("Algunas herramientas:")
 
+		report_text = st.text_input("Report Text")
+
+		export_as_pdf = st.button("Export Report")
+
+		if export_as_pdf:
+			pdf = FPDF()
+			pdf.add_page()
+			pdf.set_font('Arial', 'B', 16)
+			pdf.cell(40, 10, report_text)
+			
+			html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
+
+			st.markdown(html, unsafe_allow_html=True)
 
 
 
-		if st.button("Generate PDF"):
-
-			WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_PATH', '/app/bin/wkhtmltopdf')],
-			stdout=subprocess.PIPE).communicate()[0].strip()
-			config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
-			output_pdf = 'pdf_generado.pdf'
-
-
-			# generate the PDF file as a bytes object
-			pdf_bytes = pdfkit.from_string(output_text, output_pdf, configuration=config, css='style.css')
-			# download the PDF file
-			if pdf_bytes is not None:
-				st.success("PDF file Generated. Click on 'Download PDF' to save.")
-				b64 = base64.b64encode(pdf_bytes).decode()
-				href = f'<a href="data:application/pdf;base64,{b64}" download="{"archivo.pdf"}">Download PDF file</a>'
-				st.markdown(href, unsafe_allow_html=True)
-				# remove the success message and download link
-				st.empty()
-			else:
-				st.warning("PDF file generation failed. Please try again.")
-
-
-
-
-
-
+		st.button("Reset", type="primary")
 		if st.button('Say hello'):
 			st.write('Why hello there')
 			
@@ -132,6 +121,9 @@ if selected == "Texto":
 			st.success("Generación completada")
 			#st.download_button('Descargar archivo pdf .pdf con tu ID', pdfoutput, file_name='pdfoutput.pdf')
 
+			html = create_download_link(pdfoutput, "test")
+
+			st.markdown(html, unsafe_allow_html=True)
 
 			#st.write(result["text"])
 		else:
