@@ -9,6 +9,8 @@ import pdfkit
 import base64
 import os
 import subprocess, platform
+from fpdf import FPDF
+import base64
 
 my_name="Jorge O."
 item1="Cosa 1"
@@ -90,6 +92,22 @@ if selected == "Home":
 if selected == "Texto":
 		st.title(f"Herramientas IA para el procesamiento de texto")
 		st.write("Algunas herramientas:")
+
+		report_text = st.text_input("Report Text")
+
+		export_as_pdf = st.button("Export Report")
+
+		if export_as_pdf:
+			pdf = FPDF()
+			pdf.add_page()
+			pdf.set_font('Arial', 'B', 16)
+			pdf.cell(40, 10, report_text)
+			
+			html = create_download_link(pdf.output(dest="S").encode("latin-1"), "test")
+
+			st.markdown(html, unsafe_allow_html=True)
+
+
 
 		st.button("Reset", type="primary")
 		if st.button('Say hello'):
