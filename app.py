@@ -10,7 +10,7 @@ import base64
 import os
 import subprocess, platform
 import base64
-from fpdf import FPDF
+import fpdf 
 
 
 my_name="Jorge O."
