@@ -10,6 +10,8 @@ import base64
 import os
 import subprocess, platform
 import base64
+from fpdf import FPDF
+
 
 my_name="Jorge O."
 item1="Cosa 1"
