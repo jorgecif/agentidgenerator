@@ -3,8 +3,11 @@ from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoad
 from datetime import date
 import streamlit as st
 from streamlit.components.v1 import iframe
-import cv2
+#import cv2
 import numpy as np
+#from tempfile import NamedTemporaryFile
+from PIL import Image,ImageEnhance
+
 
 st.set_page_config(layout="centered", page_icon="🎓", page_title="ID  Generator")
 st.title("🎓 Generador de ID del Agente")
@@ -29,12 +32,11 @@ student = form.text_input("Student name")
 uploaded_file = st.file_uploader("Upload your file here...")
 
 if uploaded_file is not None:
-    # Convert the file to an opencv image.
-    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    opencv_image = cv2.imdecode(file_bytes, 1)
-
-    # Now do something with the image! For example, let's display it:
-    st.image(opencv_image, channels="BGR")
+    file_details = {"Filename":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
+    st.write(file_details)
+    image = Image.open(uploaded_file)
+    st.text("Original Image")
+    st.image(uploaded_file,use_column_width=True)
 
 
 course = form.selectbox(
