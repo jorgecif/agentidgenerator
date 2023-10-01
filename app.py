@@ -3,6 +3,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoad
 from datetime import date
 import streamlit as st
 from streamlit.components.v1 import iframe
+import cv2
+import numpy as np
 
 st.set_page_config(layout="centered", page_icon="🎓", page_title="ID  Generator")
 st.title("🎓 Generador de ID del Agente")
@@ -26,6 +28,15 @@ form = left.form("template_form")
 student = form.text_input("Student name")
 uploaded_file = st.file_uploader("Upload your file here...")
 
+if uploaded_file is not None:
+    # Convert the file to an opencv image.
+    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    opencv_image = cv2.imdecode(file_bytes, 1)
+
+    # Now do something with the image! For example, let's display it:
+    st.image(opencv_image, channels="BGR")
+
+
 course = form.selectbox(
     "Choose course",
     ["Report Generation in Streamlit", "Advanced Cryptography"],
@@ -36,7 +47,7 @@ submit = form.form_submit_button("Generate PDF")
 
 if submit:
     html = template.render(
-        imagen=uploaded_file,
+        imagen=opencv_image,
         student=student,
         course=course,
         grade=f"{grade}/100",
