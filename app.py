@@ -4,11 +4,11 @@ from datetime import date
 import streamlit as st
 from streamlit.components.v1 import iframe
 
-st.set_page_config(layout="centered", page_icon="🎓", page_title="Diploma Generator")
-st.title("🎓 Diploma PDF Generator")
+st.set_page_config(layout="centered", page_icon="🎓", page_title="ID  Generator")
+st.title("🎓 Generador de ID del Agente")
 
 st.write(
-    "This app shows youhow you can use  to make a PDF generator app in just a few lines of code!"
+    "Generador de ID Agente Evoke"
 )
 
 left, right = st.columns(2)
