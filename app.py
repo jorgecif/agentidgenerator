@@ -24,6 +24,8 @@ template = env.get_template("template.html")
 left.write("Fill in the data:")
 form = left.form("template_form")
 student = form.text_input("Student name")
+uploaded_file = st.file_uploader("Upload your file here...")
+
 course = form.selectbox(
     "Choose course",
     ["Report Generation in Streamlit", "Advanced Cryptography"],
@@ -34,6 +36,7 @@ submit = form.form_submit_button("Generate PDF")
 
 if submit:
     html = template.render(
+        imagen=uploaded_file,
         student=student,
         course=course,
         grade=f"{grade}/100",
