@@ -34,7 +34,7 @@ uploaded_file = st.file_uploader("Upload your file here...")
 if uploaded_file is not None:
     file_details = {"Filename":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
     st.write(file_details)
-    image = Image.open(uploaded_file)
+    imagenSubida = Image.open(uploaded_file)
     st.text("Original Image")
     st.image(uploaded_file,use_column_width=True)
 
@@ -49,7 +49,7 @@ submit = form.form_submit_button("Generate PDF")
 
 if submit:
     html = template.render(
-        imagen=image,
+        imagen=imagenSubida,
         student=student,
         course=course,
         grade=f"{grade}/100",
