@@ -49,7 +49,7 @@ submit = form.form_submit_button("Generate PDF")
 
 if submit:
     html = template.render(
-        imagen=opencv_image,
+        imagen=image,
         student=student,
         course=course,
         grade=f"{grade}/100",
