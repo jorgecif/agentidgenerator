@@ -10,7 +10,7 @@ import base64
 import os
 import subprocess, platform
 import base64
-import fpdf 
+
 
 
 my_name="Jorge O."
@@ -78,10 +78,7 @@ if selected == "Home":
 	st.write("**Instrucciones:** \n ")
 	"""
 * Selecciona "Imagenes" en el menú de la izquierda si quieres ver el listado de herramientas IA para la generación de imágenes
-* Selecciona "Texto" en el menú de la izquierda si quieres ver el listado de herramientas IA basadas en grandes modelos de lenguaje que te servirán para procesar y/o generar texto.
-* Selecciona "Audio" en el menú de la izquierda si quieres ver el listado de herramientas IA para el procesamiento de audio.
-* Selecciona "Otros" en el menú de la izquierda si quieres ver otras herramientas que pueden ser de utilidad para el proceso de innovación.
-* Recuerda que estas experimentando y lo importante, más que el resultado, es reconocer las ventajas de la IA.
+
 
 	\n \n \n NOTA: Esta herramienta es un demo experimental y está sujeta a la demanda de uso. 
 
