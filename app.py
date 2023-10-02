@@ -34,6 +34,7 @@ env = Environment(loader=FileSystemLoader("."), autoescape=select_autoescape())
 template = env.get_template("template.html")
 
 
+
 left.write("Fill in the data:")
 form = left.form("template_form")
 student = form.text_input("Student name")
