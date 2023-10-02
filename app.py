@@ -10,7 +10,7 @@ from PIL import Image,ImageEnhance
 import os
 
 
-imagenProfile="images\396316ec-254f-40dc-acc8-a5f76ee1c696.jfif"
+imagenProfile="images\saa.png"
 
 @st.cache
 def load_image(image_file):
