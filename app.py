@@ -9,6 +9,13 @@ import numpy as np
 from PIL import Image,ImageEnhance
 
 
+
+@st.cache
+def load_image(image_file):
+    img = Image.open(image_file)
+    return img
+
+
 st.set_page_config(layout="centered", page_icon="🎓", page_title="ID  Generator")
 st.title("🎓 Generador de ID del Agente")
 
@@ -37,6 +44,18 @@ if uploaded_file is not None:
     imagenSubida = Image.open(uploaded_file)
     st.text("Original Image")
     st.image(uploaded_file,use_column_width=True)
+
+
+image_file = st.file_uploader("Upload An Image",type=['png','jpeg','jpg'])
+if image_file is not None:
+    file_details = {"FileName":image_file.name,"FileType":image_file.type}
+    st.write(file_details)
+    img = load_image(image_file)
+    st.image(img,height=250,width=250)
+    with open(os.path.join("tempDir",image_file.name),"wb") as f: 
+      f.write(image_file.getbuffer())         
+    st.success("Saved File")
+
 
 
 course = form.selectbox(
