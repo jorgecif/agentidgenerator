@@ -77,7 +77,7 @@ if submit:
         date=date.today().strftime("%B %d, %Y"),
     )
 
-    pdf = pdfkit.from_string(html, False)
+    pdf = pdfkit.from_string(html, False, css='style.css')
     st.balloons()
 
     right.success("🎉 Your diploma was generated!")
