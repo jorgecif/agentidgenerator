@@ -8,6 +8,8 @@ import numpy as np
 #from tempfile import NamedTemporaryFile
 from PIL import Image,ImageEnhance
 import os
+from RoboArt import roboart
+ra = roboart()
 
 
 imagenProfile="images\saa.png"
@@ -90,4 +92,16 @@ if submit:
         file_name="diploma.pdf",
         mime="application/octet-stream",
     )
+
+
+generarAvatar = form.form_submit_button("Generar Avatar")
+
+if generarAvatar:
+    # You can use any random string hash, it doesnt matter
+    Robot = ra.robo("Robot") # It generates a robot avatar
+    Monster = ra.monster("Monster") # It generates a monster avatar
+    RoboHead = ra.robohead("Head") # It generates a robot head avatar
+    Kittens = ra.kitten('cats') # It generates a cat avatar
+
+    print(Robot) # prints robo
 
