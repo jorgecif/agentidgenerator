@@ -1,16 +1,18 @@
-<div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
-    <div class="logo-container">{{ imagen }}</div>
-
-    <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
-           <span style="font-size:50px; font-weight:bold">Certificate of Completion</span>
-           <br><br>
-           <span style="font-size:25px"><i>This is to certify that</i></span>
-           <br><br>
-           <span style="font-size:30px"><b>{{ student }}</b></span><br/><br/>
-           <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
-           <span style="font-size:30px">{{ course }}</span> <br/><br/>
-           <span style="font-size:20px">with score of <b> {{ grade }}</b></span> <br/><br/><br/><br/>
-           <span style="font-size:25px"><i>dated</i></span><br>
-          {{ date }}
+<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"> 
+<div class="id-card-wrapper">
+  <div class="id-card">
+    <div class="profile-row">
+      <div class="dp">
+        <div class="dp-arc-outer"></div>
+        <div class="dp-arc-inner"></div>
+        <img src="https://via.placeholder.com/420x420">
+      </div>
+      <div class="desc">
+        <h1>Tony Stark</h1>
+            <p>Strength: {{ student }}</p>
+            <p>Weakness: {{ course }}</p>
+            <p>Known as: {{my_name}}</p>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
